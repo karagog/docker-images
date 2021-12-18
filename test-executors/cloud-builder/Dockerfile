@@ -6,14 +6,15 @@
 FROM ubuntu:20.04
 
 # Install the base packages.
-RUN apt-get update && \
-  apt-get install -y \
+RUN apt-get update && apt-get install -y \
+    curl \
     git \
-    # We need the root CA certificates for example when downloading Go packages,
-    # otherwise we don't know whose certificates to trust.
-    ca-certificates \
-    # These packages are required by Bazel.
+    # The following packages are required by Bazel.
     # Note: Python is only required as a workaround for https://github.com/bazelbuild/bazel/issues/11554.
     python-is-python3 \
     patch \
     build-essential
+
+# Install Docker. Note that there doesn't seem to be a working package in Ubuntu's package repository
+# so we install from a script.
+RUN curl -sSL https://get.docker.com/ | sh

@@ -10,6 +10,7 @@ RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     tzdata \
     curl \
+    unzip \
     git \
     # The following packages are required by Bazel.
     # Note: Python is only required as a workaround for https://github.com/bazelbuild/bazel/issues/11554.
